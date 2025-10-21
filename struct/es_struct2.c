@@ -71,14 +71,18 @@ void Ordinamento(Persona elenco[], int n){
     }
 }
 
-void CercaCodiceFiscale(Persona elenco[], int n, char cf[]){
+/**
+ * @brief Cerca una persona tramite codice fiscale.
+ * @return 1 se trovata, 0 se non trovata.
+ */
+int CercaCodiceFiscale(Persona elenco[], int n, char cf[]){
     for(int i = 0; i < n; i++){
         if(strcmp(elenco[i].codice_fiscale, cf) == 0){
             Visualizza(elenco[i]);
-            return;
+            return 1;
         }
     }
-    printf("Persona non trovata.\n");
+    return 0;
 }
 
 /**
@@ -156,7 +160,8 @@ int main(){
             case 3:
                 printf("Inserisci un codice fiscale da cercare: ");
                 scanf("%s", cf);
-                CercaCodiceFiscale(elenco, n, cf);
+                if(CercaCodiceFiscale(elenco, n, cf) == 0)
+                    printf("Persona non trovata.\n");
                 break;
             case 4:
                 printf("Inserisci un reddito minimo: ");
