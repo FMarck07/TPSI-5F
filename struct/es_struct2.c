@@ -2,6 +2,12 @@
 #include <string.h>
 #define MAX 100
 
+/**
+ * @struct Persona
+ * @brief Rappresenta le informazioni di una persona.
+ * 
+ * Contiene nome, cognome, età, codice fiscale, reddito annuo, anno di nascita e città di residenza.
+ */
 typedef struct {
     char nome[MAX];
     char cognome[MAX];
@@ -12,6 +18,11 @@ typedef struct {
     char residenza[MAX];
 } Persona;
 
+/**
+ * @brief Inserisce una serie di persone in un array.
+ * @param p Array di persone da popolare.
+ * @param n Numero di persone da inserire.
+ */
 void InserisciPersona(Persona p[], int n){
     for(int i = 0; i < n; i++){
         printf("\nPersona %d:\n", i + 1);
@@ -32,18 +43,29 @@ void InserisciPersona(Persona p[], int n){
     }
 }
 
+/**
+ * @brief Stampa le informazioni di una singola persona.
+ * @param p Persona da visualizzare.
+ */
 void Visualizza(Persona p){
     printf("Nome: %s, Cognome: %s, Eta: %d, Codice fiscale: %s, Reddito: %.2f, Anno nascita: %d, Residenza: %s\n", 
            p.nome, p.cognome, p.eta, p.codice_fiscale, p.reddito_annuo, p.anno_nascita, p.residenza);
 }
 
+/**
+ * @brief Trova e visualizza le persone con reddito massimo e minimo.
+ * @param p Array di persone.
+ * @param n Numero di persone nell'array.
+ */
 void VisualizzaRedditoMinMax(Persona p[], int n){
     int min = 0, max = 0;
     for(int i = 1; i < n; i++){
-        if(p[i].reddito_annuo > p[max].reddito_annuo)
+        if(p[i].reddito_annuo > p[max].reddito_annuo){
             max = i;
-        if(p[i].reddito_annuo < p[min].reddito_annuo)
+        }
+        if(p[i].reddito_annuo < p[min].reddito_annuo){
             min = i;
+        }
     }
     printf("\nPersona con reddito massimo:\n");
     Visualizza(p[max]);
@@ -51,6 +73,11 @@ void VisualizzaRedditoMinMax(Persona p[], int n){
     Visualizza(p[min]);
 }
 
+/**
+ * @brief Ordina le persone in base all'anno di nascita (dal più vecchio al più giovane) e le visualizza.
+ * @param elenco Array di persone.
+ * @param n Numero di persone nell'array.
+ */
 void Ordinamento(Persona elenco[], int n){
     Persona tmp;
     for(int i = 0; i < n - 1; i++){
@@ -67,6 +94,13 @@ void Ordinamento(Persona elenco[], int n){
     }
 }
 
+/**
+ * @brief Cerca una persona tramite codice fiscale.
+ * @param elenco Array di persone.
+ * @param n Numero di persone nell'array.
+ * @param cf Codice fiscale da cercare.
+ * @return 1 se la persona è stata trovata, 0 altrimenti.
+ */
 int CercaCodiceFiscale(Persona elenco[], int n, char cf[]){
     for(int i = 0; i < n; i++){
         if(strcmp(elenco[i].codice_fiscale, cf) == 0){
@@ -77,6 +111,13 @@ int CercaCodiceFiscale(Persona elenco[], int n, char cf[]){
     return 0;
 }
 
+/**
+ * @brief Visualizza tutte le persone con reddito superiore o uguale a un valore specificato.
+ * @param elenco Array di persone.
+ * @param n Numero di persone nell'array.
+ * @param reddito Valore minimo del reddito da filtrare.
+ * @return 1 se almeno una persona soddisfa la condizione, 0 altrimenti.
+ */
 int VisualizzaRedditoSuperiore(Persona elenco[], int n, float reddito){
     int trovato = 0;
     for(int i = 0; i < n; i++){
@@ -88,6 +129,12 @@ int VisualizzaRedditoSuperiore(Persona elenco[], int n, float reddito){
     return trovato;
 }
 
+/**
+ * @brief Calcola la media dei redditi delle persone.
+ * @param elenco Array di persone.
+ * @param n Numero di persone nell'array.
+ * @return Media dei redditi; 0 se l'array è vuoto.
+ */
 float MediaReddito(Persona elenco[], int n){
     if(n == 0) return 0;
     float somma = 0;
@@ -97,6 +144,13 @@ float MediaReddito(Persona elenco[], int n){
     return somma / n;
 }
 
+/**
+ * @brief Visualizza tutte le persone nate in un anno specifico.
+ * @param elenco Array di persone.
+ * @param n Numero di persone nell'array.
+ * @param anno Anno di nascita da cercare.
+ * @return 1 se almeno una persona è stata trovata, 0 altrimenti.
+ */
 int VisualizzaAnno(Persona elenco[], int n, int anno){
     int trovato = 0;
     for(int i = 0; i < n; i++){
@@ -108,19 +162,26 @@ int VisualizzaAnno(Persona elenco[], int n, int anno){
     return trovato;
 }
 
+/**
+ * @brief Funzione principale del programma.
+ * Permette di inserire persone e interagire tramite un menu per effettuare diverse operazioni.
+ */
 int main(){
     int n, scelta, anno;
     char cf[16];
     float reddito;
     Persona elenco[MAX];
 
+    // Richiesta del numero di persone da inserire
     printf("Inserisci il numero di persone da inserire: ");
     scanf("%d", &n);
 
     if(n > 0){
+        // Inserimento iniziale delle persone
         InserisciPersona(elenco, n);
 
         do{
+            // Visualizzazione menu
             printf("\nMenu\n");
             printf("0. Esci dal programma\n");
             printf("1. Reddito + alto e + basso\n");
