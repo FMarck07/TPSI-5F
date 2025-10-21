@@ -161,7 +161,7 @@ int main(){
             case 4:
                 printf("Inserisci un reddito minimo: ");
                 scanf("%f", &reddito);
-                if(!VisualizzaRedditoSuperiore(elenco, n, reddito))
+                if(VisualizzaRedditoSuperiore(elenco, n, reddito) == 0)
                     printf("Nessuna persona con reddito >= %.2f trovata.\n", reddito);
                 break;
             case 5:
@@ -170,7 +170,7 @@ int main(){
             case 6:
                 printf("Inserisci un anno: ");
                 scanf("%d", &anno);
-                if(!VisualizzaAnno(elenco, n, anno))
+                if(VisualizzaAnno(elenco, n, anno) == 0)
                     printf("Persona non trovata.\n");
                 break;
             case 0:
