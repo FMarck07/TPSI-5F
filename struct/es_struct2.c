@@ -103,17 +103,15 @@ int VisualizzaRedditoSuperiore(Persona elenco[], int n, float reddito){
 /**
  * @brief Calcola e stampa la media dei redditi delle persone.
  */
-void MediaReddito(Persona elenco[], int n){
-    if(n == 0){
-        printf("Nessuna persona registrata.\n");
-        return;
-    }
+float MediaReddito(Persona elenco[], int n){
+    if(n == 0) return 0;
     float somma = 0;
     for(int i = 0; i < n; i++){
         somma += elenco[i].reddito_annuo;
     }
-    printf("Media reddito: %.2f\n", somma / n);
+    return somma / n;
 }
+
 
 /**
  * @brief Visualizza tutte le persone nate in un anno specifico.
@@ -170,7 +168,7 @@ int main(){
                     printf("Nessuna persona con reddito >= %.2f trovata.\n", reddito);
                 break;
             case 5:
-                MediaReddito(elenco, n);
+                printf("Media reddito: %.2f\n", MediaReddito(elenco, n));
                 break;
             case 6:
                 printf("Inserisci un anno: ");
