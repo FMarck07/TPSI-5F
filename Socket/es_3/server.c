@@ -1,9 +1,3 @@
-/*
-Esercizio 3
-Scrivere il codice in C di un'applicazione Socket CLIENT-SERVER in cui il server riceve in input 1 stringa
-e, dopo gli opportuni controlli, rispedisce al Client la stringa ordinata alfabeticamente.
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
@@ -16,7 +10,7 @@ e, dopo gli opportuni controlli, rispedisce al Client la stringa ordinata alfabe
 #define DIM 100
 #define SERVERPORT 1313
 
-// Funzione per ordinare alfabeticamente una stringa (bubble sort)
+// Funzione per ordinare alfabeticamente una stringa
 void ordina_stringa(char *str) {
     int n = strlen(str);
     for (int i = 0; i < n - 1; i++) {
@@ -62,8 +56,7 @@ int main() {
             continue;
         }
 
-        memset(str, 0, DIM);
-        read(soa, str, DIM);
+        read(soa, str, DIM);   // si assume che il client invii '\0' finale
 
         printf("\nStringa ricevuta: %s\n", str);
 
@@ -71,7 +64,7 @@ int main() {
 
         printf("Stringa ordinata: %s\n", str);
 
-        write(soa, str, strlen(str) + 1);
+        write(soa, str, sizeof(str));
 
         close(soa);
     }
