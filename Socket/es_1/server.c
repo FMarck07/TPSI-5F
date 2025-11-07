@@ -68,8 +68,7 @@ int main()
 
         soa = accept(socketfd, (struct sockaddr*)&addr_remoto, &fromlen);
         if (soa < 0) {
-            perror("Errore accept");
-            continue;
+            perror("Errore");
         }
 
 
