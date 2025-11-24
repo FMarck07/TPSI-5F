@@ -4,8 +4,6 @@ stringhe e, dopo aver effettuato gli eventuali ed opportuni controlli (se necess
 messaggio di quale delle due stringhe è + lunga o più corta o se sono uguali.
 */
 
-//@author Giacomo Redi 5F
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
@@ -77,3 +75,4 @@ int main() {
     }
     return 0;
 }
+
