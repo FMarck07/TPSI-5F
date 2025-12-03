@@ -145,7 +145,7 @@ int main(){
         
         read(soa, &codice, sizeof(codice)); 
         
-        printf("Ricevuto stringa: \"%s\" e codice: %d\n", stringa, codice);
+        printf("Ricevuto stringa: %s e codice: %d\n", stringa, codice);
         
         switch(codice){
             case 1:
