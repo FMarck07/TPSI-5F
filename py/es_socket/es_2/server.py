@@ -21,7 +21,7 @@ def gestione_prenotazione(conn, addr):
             continue
             
         if disponibilita > 0:
-            disponibilita - 1 = disponibilita 
+            disponibilita= disponibilita -1
             # Ora posso usare i nomi delle città nella risposta
             risposta = f"Taxi confermato da {partenza} a {arrivo}. Rimasti: {disponibilita}"
         else:
